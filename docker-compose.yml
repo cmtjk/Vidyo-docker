@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+    vidyo:
+        image: r3r57/vidyo
+        build: .
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix:ro
+            - /etc/localtime:/etc/localtime:ro
+        devices:
+            - /dev/video0:/dev/video0
+            - /dev/video1:/dev/video1
+            - /dev/video2:/dev/video2
+            - /dev/video3:/dev/video3
+            - /dev/snd:/dev/snd
+        environment:
+          - DISPLAY=$DISPLAY
+          - QT_X11_NO_MITSHM=1
+        network_mode: host
